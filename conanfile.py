@@ -106,7 +106,7 @@ class BoostConan(ConanFile):
                 self.requires("bzip2/1.0.6@lasote/stable")
                 if not self.options.header_only:
                     self.options["bzip2/1.0.6"].shared = self.options.shared
-            self.requires("zlib/1.2.8@lasote/stable")
+            self.requires("zlib/1.2.8@conan/stable")
             if not self.options.header_only:
                 self.options["zlib"].shared = self.options.shared
 
@@ -228,7 +228,7 @@ class BoostConan(ConanFile):
             tools.cpu_count(),
             without_python)
         self.output.warn(full_command)
-        
+
         envs = self.prepare_deps_options_env()
         with tools.environment_append(envs):
             self.run(full_command)#, output=False)
@@ -242,7 +242,7 @@ class BoostConan(ConanFile):
 #             ret["BZIP2_BINARY"] = lib_name
 #             ret["BZIP2_INCLUDE"] = include_path
 #             ret["BZIP2_LIBPATH"] = lib_path
-            
+
         return ret
 
     def package(self):
