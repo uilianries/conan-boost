@@ -66,9 +66,6 @@ jobs:
     vmImage: 'vs2015-win2012r2'
   timeoutInMinutes: 120
   steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.x'
   - script: |
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
