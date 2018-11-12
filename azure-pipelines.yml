@@ -14,6 +14,7 @@ jobs:
       DOCKER_PASSWORD: $(DOCKER_PASSWORD)
       CONAN_TOTAL_PAGES: 4
       CONAN_CPU_COUNT: 1
+      CONAN_USER_HOME_SHORT: C:\.conan
   strategy:
     matrix:
       MinGW GCC 6 PAGE 1:
@@ -75,6 +76,7 @@ jobs:
       DOCKER_PASSWORD: $(DOCKER_PASSWORD)
       CONAN_TOTAL_PAGES: 4
       CONAN_CPU_COUNT: 1
+      CONAN_USER_HOME_SHORT: C:\.conan
   strategy:
     matrix:
       Visual Studio 2015 12.0 PAGE 1:
