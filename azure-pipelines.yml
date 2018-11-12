@@ -7,7 +7,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.6'
-  - task: MSBuild@0
+  - task: MSBuild@1
     inputs:
       clean: false
   - script: |
