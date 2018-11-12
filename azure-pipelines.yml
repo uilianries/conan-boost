@@ -1,8 +1,4 @@
-
-jobs:
-- job: Windows
-  pool:
-    vmImage: 'VS2017-Win2016'
+job-template: &job-template
   timeoutInMinutes: 120
   steps:
   - task: UsePythonVersion@0
@@ -14,6 +10,12 @@ jobs:
     env:
       DOCKER_PASSWORD: $(DOCKER_PASSWORD)
       CONAN_TOTAL_PAGES: 4
+
+jobs:
+- job: Windows
+  pool:
+    vmImage: 'VS2017-Win2016'
+  <<: *job-template
   strategy:
     matrix:
       MinGW GCC 6 PAGE 1:
@@ -63,14 +65,7 @@ jobs:
 - job: MSVC12
   pool:
     vmImage: 'vs2015-win2012r2'
-  timeoutInMinutes: 120
-  steps:
-  - script: |
-      pip install bincrafters-package-tools conan-package-tools conan
-      python build.py
-    env:
-      DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-      CONAN_TOTAL_PAGES: 4
+  <<: *job-template
   strategy:
     matrix:
       Visual Studio 2015 12.0 PAGE 1:
@@ -84,4 +79,4 @@ jobs:
         CONAN_CURRENT_PAGE: 3
       Visual Studio 2015 12.0 PAGE 4:
         CONAN_VISUAL_VERSIONS: "12"
-CONAN_CURRENT_PAGE: 4
+        CONAN_CURRENT_PAGE: 4
