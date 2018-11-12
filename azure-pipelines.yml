@@ -7,9 +7,9 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.6'
-  - task: MSBuild@1
+  - task: MSBuild@0
      inputs:
-       Clean: false
+       clean: false
   - script: |
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
@@ -66,7 +66,7 @@ jobs:
   pool:
     vmImage: 'vs2015-win2012r2'
   timeoutInMinutes: 120
-  steps:  
+  steps:
   - script: |
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
