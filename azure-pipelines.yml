@@ -59,7 +59,7 @@ jobs:
         CONAN_VISUAL_VERSIONS: "15"
         CONAN_CURRENT_PAGE: 4
 
-- job: MSVC 12
+- job: MSVC12
   pool:
     vmImage: 'vs2015-win2012r2'
   timeoutInMinutes: 120
