@@ -7,9 +7,6 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.6'
-  - task: MSBuild@1
-    inputs:
-      clean: false
   - script: |
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
