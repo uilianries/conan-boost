@@ -42,7 +42,6 @@ class BoostConan(ConanFile):
     homepage = "https://www.boost.org"
     topics = ("conan", "boost", "portable", "library", "framework")
     license = "BSL-1.0"
-    short_paths = True
     no_copy_source = False
 
     exports = ['patches/*']
