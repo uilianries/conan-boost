@@ -1,5 +1,5 @@
 jobs:
-- job: Windows
+- job: VS2017
   pool:
     vmImage: 'VS2017-Win2016'
   timeoutInMinutes: 120
@@ -61,11 +61,14 @@ jobs:
         CONAN_VISUAL_VERSIONS: "15"
         CONAN_CURRENT_PAGE: 4
 
-- job: MSVC12
+- job: VS2015
   pool:
     vmImage: 'vs2015-win2012r2'
   timeoutInMinutes: 120
   steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3'
   - script: |
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
