@@ -15,6 +15,7 @@ jobs:
       CONAN_TOTAL_PAGES: 4
       CONAN_CPU_COUNT: 1
       CONAN_USER_HOME_SHORT: C:\.conan
+      CONAN_TEMP_TEST_FOLDER: 1
   strategy:
     matrix:
       MinGW GCC 6 PAGE 1:
