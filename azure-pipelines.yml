@@ -1,4 +1,35 @@
 jobs:
+- job: MSVC12
+  pool:
+    vmImage: 'VS2017-Win2016'
+  timeoutInMinutes: 120
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+  - task: VSBuild@1
+    inputs:
+      vsVersion: '12.0'
+  - script: |
+      pip install bincrafters-package-tools conan-package-tools conan
+      python build.py
+    env:
+      DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+      CONAN_TOTAL_PAGES: 4
+  strategy:
+    matrix:
+      Visual Studio 2017 12.0 PAGE 1:
+        CONAN_VISUAL_VERSIONS: "12"
+        CONAN_CURRENT_PAGE: 1
+      Visual Studio 2017 12.0 PAGE 2:
+        CONAN_VISUAL_VERSIONS: "12"
+        CONAN_CURRENT_PAGE: 2
+      Visual Studio 2017 12.0 PAGE 3:
+        CONAN_VISUAL_VERSIONS: "12"
+        CONAN_CURRENT_PAGE: 3
+      Visual Studio 2017 12.0 PAGE 4:
+        CONAN_VISUAL_VERSIONS: "12"
+        CONAN_CURRENT_PAGE: 4
 - job: VS2017
   pool:
     vmImage: 'VS2017-Win2016'
@@ -8,7 +39,6 @@ jobs:
     inputs:
       versionSpec: '3.6'
   - script: |
-      
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
     env:
@@ -35,10 +65,6 @@ jobs:
          CONAN_TOTAL_PAGES: 2
 
       Visual Studio 2017 14.0 PAGE 1:
-        - task: VSBuild@1
-          inputs: 
-            vsVersion: '14.0'
-        CONAN_VISUAL_VERSIONS: "14"
         CONAN_CURRENT_PAGE: 1
       Visual Studio 2017 14.0 PAGE 2:
         CONAN_VISUAL_VERSIONS: "14"
