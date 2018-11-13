@@ -8,17 +8,15 @@ jobs:
     inputs:
       versionSpec: '3.6'
   - script: |
+      
       pip install bincrafters-package-tools conan-package-tools conan
       python build.py
     env:
       DOCKER_PASSWORD: $(DOCKER_PASSWORD)
       CONAN_TOTAL_PAGES: 4
-      CONAN_CPU_COUNT: 1
-      CONAN_USER_HOME_SHORT: C:\.conan
-      CONAN_TEMP_TEST_FOLDER: 1
   strategy:
     matrix:
-      MinGW GCC 6 PAGE 1:
+      MinGW GCC 6 PAGE 1:      
          MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
          CONAN_CURRENT_PAGE: 1
          CONAN_TOTAL_PAGES: 2
@@ -37,6 +35,9 @@ jobs:
          CONAN_TOTAL_PAGES: 2
 
       Visual Studio 2017 14.0 PAGE 1:
+        - task: VSBuild@1
+          inputs: 
+            vsVersion: '14.0'
         CONAN_VISUAL_VERSIONS: "14"
         CONAN_CURRENT_PAGE: 1
       Visual Studio 2017 14.0 PAGE 2:
@@ -60,35 +61,4 @@ jobs:
         CONAN_CURRENT_PAGE: 3
       Visual Studio 2017 15.0 PAGE 4:
         CONAN_VISUAL_VERSIONS: "15"
-        CONAN_CURRENT_PAGE: 4
-
-- job: VS2015
-  pool:
-    vmImage: 'vs2015-win2012r2'
-  timeoutInMinutes: 120
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3'
-  - script: |
-      pip install bincrafters-package-tools conan-package-tools conan
-      python build.py
-    env:
-      DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-      CONAN_TOTAL_PAGES: 4
-      CONAN_CPU_COUNT: 1
-      CONAN_USER_HOME_SHORT: C:\.conan
-  strategy:
-    matrix:
-      Visual Studio 2015 12.0 PAGE 1:
-        CONAN_VISUAL_VERSIONS: "12"
-        CONAN_CURRENT_PAGE: 1
-      Visual Studio 2015 12.0 PAGE 2:
-        CONAN_VISUAL_VERSIONS: "12"
-        CONAN_CURRENT_PAGE: 2
-      Visual Studio 2015 12.0 PAGE 3:
-        CONAN_VISUAL_VERSIONS: "12"
-        CONAN_CURRENT_PAGE: 3
-      Visual Studio 2015 12.0 PAGE 4:
-        CONAN_VISUAL_VERSIONS: "12"
         CONAN_CURRENT_PAGE: 4
