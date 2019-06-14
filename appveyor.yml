@@ -15,6 +15,27 @@ environment:
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "release/*"
 
     matrix:
+
+        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
+          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
+          CONAN_CURRENT_PAGE: 1
+          CONAN_TOTAL_PAGES: 2
+
+        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
+          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
+          CONAN_CURRENT_PAGE: 2
+          CONAN_TOTAL_PAGES: 2
+
+        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
+          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
+          CONAN_CURRENT_PAGE: 1
+          CONAN_TOTAL_PAGES: 2
+
+        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
+          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
+          CONAN_CURRENT_PAGE: 2
+          CONAN_TOTAL_PAGES: 2
+
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
           CONAN_VISUAL_VERSIONS: 16
           CONAN_CURRENT_PAGE: 1
@@ -35,26 +56,6 @@ environment:
           CONAN_VISUAL_VERSIONS: 16
           CONAN_CURRENT_PAGE: 5
           CONAN_TOTAL_PAGES: 5
-
-        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
-          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
-          CONAN_CURRENT_PAGE: 1
-          CONAN_TOTAL_PAGES: 2
-
-        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
-          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
-          CONAN_CURRENT_PAGE: 2
-          CONAN_TOTAL_PAGES: 2
-
-        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
-          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
-          CONAN_CURRENT_PAGE: 1
-          CONAN_TOTAL_PAGES: 2
-
-        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
-          CONAN_BASH_PATH: "c:\\msys64\\usr\\bin\\bash"
-          CONAN_CURRENT_PAGE: 2
-          CONAN_TOTAL_PAGES: 2
 
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
@@ -125,5 +126,4 @@ install:
   - conan user # It creates the conan data directory
 
 test_script:
-  - python build.py || true
-  - type C:/projects/conan-boost/trace.log
+  - python build.py
